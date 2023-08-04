@@ -1,0 +1,15 @@
+<!-- views/currency_conversion.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Currency Conversion</title>
+</head>
+<body>
+  <h1>Convert <%= @requested_currency %></h1>
+  <ul>
+    <% @other_currencies.each do |currency| %>
+      <li>Convert 1 <%= @requested_currency %> to <%= currency %>...</li>
+    <% end %>
+  </ul>
+</body>
+</html>
