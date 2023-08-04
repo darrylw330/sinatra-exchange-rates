@@ -1,0 +1,12 @@
+<!-- views/currency_conversion_rate.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Currency Conversion Rate</title>
+</head>
+<body>
+  <h1>Convert <%= params['from_currency'] %> to <%= params['to_currency'] %></h1>
+  <p><%= 1 %> <%= params['from_currency'] %> equals <%= @rate %> <%= params['to_currency'] %>.</p>
+  <p><a href="/<%= params['from_currency'] %>">Back to Currency Conversion Options for <%= params['from_currency'] %></a></p>
+</body>
+</html>

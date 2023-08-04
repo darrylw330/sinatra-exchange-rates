@@ -2,13 +2,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Currency List</title>
+  <title>Sinatra Exchange Rates</title>
 </head>
 <body>
-  <h1>List of Available Currencies</h1>
+  <h1>Currency pairs</h1>
+
+  <!-- Currency Pairs section -->
+  <div id="currency_pairs">
+    <h2>Currency Pairs</h2>
+    <p>Replace this paragraph with the content you want to display for currency pairs.</p>
+  </div>
+
+  <h2>List of Available Currencies</h2>
   <ul>
     <% @symbols.each do |symbol| %>
-      <li><%= symbol %></li>
+      <li>
+        <%= symbol %> - <a href="/<%= symbol %>">Conversion Options</a>
+      </li>
     <% end %>
   </ul>
 </body>

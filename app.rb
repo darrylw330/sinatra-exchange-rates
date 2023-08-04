@@ -4,6 +4,7 @@ require 'sinatra'
 require 'http'
 require 'json'
 
+# Root route to fetch the list of currencies
 get '/' do
   # Fetch the list of currencies from the exchangerate.host API
   response = HTTP.get('https://api.exchangerate.host/symbols')
@@ -16,7 +17,7 @@ get '/' do
   erb :index
 end
 
-# New route for currency conversion options
+# Route for currency conversion options
 get '/:currency' do
   # Fetch the list of currencies from the exchangerate.host API
   response = HTTP.get('https://api.exchangerate.host/symbols')
@@ -36,4 +37,21 @@ get '/:currency' do
     # If the requested currency is not available, return an error message
     "Currency not found."
   end
+end
+
+# Route for currency conversion rate
+get '/:from_currency/:to_currency' do
+  # Fetch the conversion rate from the exchangerate.host API
+  from_currency = params['from_currency'].upcase
+  to_currency = params['to_currency'].upcase
+
+  # Fetch the conversion rate from the API
+  response = HTTP.get("https://api.exchangerate.host/convert?from=#{from_currency}&to=#{to_currency}")
+  data = JSON.parse(response.body)
+
+  # Extract the conversion rate from the response data
+  @rate = data['result'].to_f
+
+  # Render the view template (currency_conversion_rate.erb) with the conversion rate
+  erb :currency_conversion_rate
 end

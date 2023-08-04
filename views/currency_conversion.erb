@@ -2,14 +2,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Currency Conversion</title>
+  <title>Currency Conversion Options</title>
 </head>
 <body>
-  <h1>Convert <%= @requested_currency %></h1>
-  <ul>
-    <% @other_currencies.each do |currency| %>
-      <li>Convert 1 <%= @requested_currency %> to <%= currency %>...</li>
-    <% end %>
-  </ul>
+  <% if @requested_currency %>
+    <h1>Convert <%= @requested_currency %></h1>
+    <ul>
+      <% @other_currencies.each do |currency| %>
+        <li><a href="/<%= @requested_currency %>/<%= currency %>">Convert 1 <%= @requested_currency %> to <%= currency %>...</a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h1>Currency not found.</h1>
+  <% end %>
+  <p><a href="/">Back to Currency List</a></p>
 </body>
 </html>
