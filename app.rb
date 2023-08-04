@@ -13,6 +13,9 @@ get '/' do
   # Extract the symbols from the response data
   @symbols = data['symbols'].keys
 
+  # Regular expression for currency pairs
+  @currency_pairs_regex = /Currency\s+pairs/i
+
   # Render the view template (index.erb) with the list of symbols
   erb :index
 end
@@ -30,12 +33,12 @@ get '/:currency' do
   if data['symbols'].key?(requested_currency)
     @requested_currency = requested_currency
     @other_currencies = data['symbols'].keys.reject { |currency| currency == requested_currency }
-    
+
     # Render the view template (currency_conversion.erb) with the currency conversion options
     erb :currency_conversion
   else
-    # If the requested currency is not available, return an error message
-    "Currency not found."
+    # If the requested currency is not available, render the view template (currency_not_found.erb)
+    erb :currency_not_found
   end
 end
 

@@ -6,14 +6,15 @@
 </head>
 <body>
   <% if @requested_currency %>
-    <h1>Convert <%= @requested_currency %></h1>
+    <h1>Convert 1 <%= @requested_currency %> to...</h1>
     <ul>
       <% @other_currencies.each do |currency| %>
         <li><a href="/<%= @requested_currency %>/<%= currency %>">Convert 1 <%= @requested_currency %> to <%= currency %>...</a></li>
       <% end %>
     </ul>
   <% else %>
-    <h1>Currency not found.</h1>
+    <h1>Convert <%= params['currency'] %></h1>
+    <p>Currency not found.</p>
   <% end %>
   <p><a href="/">Back to Currency List</a></p>
 </body>
