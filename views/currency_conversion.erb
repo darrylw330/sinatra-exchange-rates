@@ -6,7 +6,7 @@
 </head>
 <body>
   <% if @requested_currency %>
-    <h1>Convert 1 <%= @requested_currency %> to...</h1>
+    <h1><a href="/<%= @requested_currency %>">Convert 1 <%= @requested_currency %> to...</a></h1>
     <ul>
       <% @other_currencies.each do |currency| %>
         <li><a href="/<%= @requested_currency %>/<%= currency %>">Convert 1 <%= @requested_currency %> to <%= currency %>...</a></li>
